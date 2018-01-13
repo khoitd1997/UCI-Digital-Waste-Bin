@@ -41,73 +41,6 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 
 
-# Commented out codes for threading
-
-# class Scale_Thread(threading.Thread):
-#     def __init__(self, screen, scale_lock: threading.RLock=None, text_box: sector_draw.text_surface=None, header: sector_draw.text_surface=None, header_text=None, im_list=None, top_rect_list=None, mid_rect_list=None, bot_rect_list=None, top_rect=None, mid_rect=None, bot_rect=None):
-#         self._Scale = Scale()
-#         super(Scale_Thread, self).__init__()
-#         self.daemon = True
-#         self._lock = scale_lock
-#         self._text_bubble = text_box
-#         self._header = header
-#         self._screen = screen
-#         self._header_text = header_text
-#         self._im_list = im_list
-#         self._top_rect_list = top_rect_list
-#         self._mid_rect_list = mid_rect_list
-#         self._bot_rect_list = bot_rect_list
-#         self._top_rect = top_rect
-#         self._mid_rect = mid_rect
-#         self._bot_rect = bot_rect
-
-#     def run(self):
-#         weight = 0
-#         while(True):
-#             if self._Scale.ser.in_waiting >= 6:
-#                 reading = self._Scale.ser.read(6)
-#                 while((len(reading) != 6 or reading[0] != 0xff)):
-#                     self._Scale.ser.close()
-#                     self._Scale.ser.open()
-#                     reading = self._Scale.ser.read(6)
-#                 if not(reading[2] == self._Scale.raw[2] and reading[3] == self._Scale.raw[3] and reading[1] == self._Scale.raw[1] and reading[4] == self._Scale.raw[4]):
-#                     weight = self._Scale.check(reading)
-#                     if(weight):
-#                         while(not(self._lock.acquire(blocking=False))):
-#                             pygame.event.pump()
-#                         self._screen.fill(white)
-#                         pygame.event.pump()
-#                         self._text_bubble.draw_text_surface(
-#                             sector_draw.compost_text_processing(weight))
-#                         pygame.event.pump()
-#                         pygame.display.flip()
-#                         pygame.event.pump()
-#                         time.sleep(4)
-#                         pygame.event.pump()
-#                         self._screen.fill(white)
-#                         self._header.draw_text_surface(self._header_text)
-#                         pygame.display.flip()
-#                         self._screen.fill(white, self._top_rect)
-#                         self._screen.fill(white, self._mid_rect)
-#                         self._screen.fill(white, self._bot_rect)
-#                         pygame.display.flip()
-#                         pygame.event.pump()
-#                         self._screen.blit(
-#                             self._im_list[0], self._top_rect_list[0])
-#                         pygame.event.pump()
-#                         self._screen.blit(
-#                             self._im_list[1], self._mid_rect_list[1])
-#                         pygame.event.pump()
-#                         self._screen.blit(
-#                             self._im_list[2], self._bot_rect_list[2])
-#                         pygame.event.pump()
-#                         pygame.event.pump()
-#                         pygame.display.flip()
-#                         pygame.event.pump()
-#                         self._lock.release()
-
-# scale class representing a scale
-
 class Scale:
     def __init__(self) -> None:
         # create serial object using pyserial API
@@ -124,7 +57,7 @@ class Scale:
         self.last_value = 0
 
         # last recorded raw value
-        self.raw = [0, 0, 0, 0, 0, 0]
+        #self.raw = [0, 0, 0, 0, 0, 0]
 
         # minimum increase in weight to be counted as increased
         self.weight_threshold = 0.006
@@ -171,11 +104,12 @@ class Scale:
             digit4 * 1000 + digit5 * 10000 + digit6 * 100000
         result /= float(10 ** (decimal_point - 1))  # more precision
 
+        result = result * (-1.0) if negative else result
+
         # Convert from lbs to ounce, which will be multiplied
         # with a conversion factor to determine the ounces of carbon
         # emission saved
-        result = result * 16
-        result = result * (-1.0) if negative else result
+        result *= 16
 
         # this is a check implemented to detect if the
         # trashbag has been replaced, if replaced
@@ -193,9 +127,10 @@ class Scale:
             difference = float(result) - float(self.last_value)
             self.last_value = result
 
-            #self.raw = raw
-
             return difference  # return weight change between this and the last stable read in lbs
+
+        else:
+            return 0
 
     def open(self) -> None:
         self.ser.open()

@@ -17,10 +17,10 @@ app.web_app.setMinimumWidth(1024)
 app.web_app.setMinimumHeight(768)
 
 # initialize html file here
-app.html = u"<html></html>"
+app.html = u"Hellow World"
 
 # initialize template here, input a dictionary
-app.template = ("./index.html", {"template_variable_name": "value"})
+app.template = ("./index.html", {{"template_variable_name": "value"}})
 
 # run javascript code
 app.evaluate_javascript("alert('initialized')")

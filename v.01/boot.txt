@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# On boot these chnages will start the website and run weight program
+
+#step 1
+# go to sudo nano ~/.config/lxsession/LXDE-pi/autostart
+#find @xscreensaver -no-splash comment it out
+#add
+#@xset s off
+#@xset -dpms
+#@xset s noblank
+#@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences
+#@chromium --noerrdialogs --kiosk websitegoeshere 
+
+
+#the python code still need to be run but we have to test that see what we want

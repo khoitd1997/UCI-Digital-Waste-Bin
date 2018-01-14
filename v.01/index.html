@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="w3.css">
-<head>
-<style>
+	<head>
+
+	 <link rel="stylesheet" href="{{ url_for('static', filename='w3.css') }}">
+	 <link rel="stylesheet" href="style.css">
+<!---<style>
 body 
 {
 	background-color: #ffffff;
@@ -50,7 +52,7 @@ img
 
 @-webkit-keyframes bounceInDown {
   from, 10%, 12.5%, 15%, to {
-    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+   -webkit- animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   0% {
@@ -120,7 +122,7 @@ p
 
 }
 
-</style>
+</style> --->
 </head>
 <body>
 <h1>

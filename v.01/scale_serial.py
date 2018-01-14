@@ -136,7 +136,6 @@ class Scale:
         self.ser.close()
 
 
-"""
 if __name__ == '__main__':
     # Test the examples from Khoi's screenshot
 
@@ -144,7 +143,16 @@ if __name__ == '__main__':
 
     while(True):
         # 0:unusable, -1:error, others: difference in mass
-        print(s.check(s.ser.read(6)))
+        while(True):
+            if s.ser.in_waiting >= 6:
+            reading = s.ser.read(6)
+            while((len(reading) != 6 or reading[0] != 0xff)):
+                s.ser.close()
+                s.ser.open()
+                reading = s.ser.read(6)
+                res = s.check(reading)
+                if(res):
+                    with open('result', 'w') as a:
+                        a.write(str(res) + "//")
 
     s.close()
-"""

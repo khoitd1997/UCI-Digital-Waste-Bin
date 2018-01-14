@@ -150,7 +150,7 @@ if __name__ == '__main__':
                 reading = s.ser.read(6)
             res = s.check(reading)
             if(res):
-                with open('result', 'w') as a:
+                with open('result.json', 'w') as a:
                     a.write(str(res) + "//")
 
     s.close()

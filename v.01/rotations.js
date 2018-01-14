@@ -15,8 +15,8 @@ async function runProgram()
 	{	
 		objDate2 = new Date();
 		sec2 = objDate2.getMilliseconds();
-		await sleep(200); //sleep for 100 ms
-		readTextFile("file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/test.json")
+		await sleep(500); //sleep for 100 ms
+		readTextFile("file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/result.json")
 		//console.log("asfeaesfa");
 		//console.log(sec2-sec1);
 		//if(sec2 - sec1 >= 400)
@@ -38,7 +38,9 @@ function readTextFile(file)
             {
                 var allText = rawFile.responseText;
                 //alert(allText);
-                //console.log(allText);
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(allText,"text/xml");
+                console.log(xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue);
             }
         }
     }

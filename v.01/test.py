@@ -1,6 +1,6 @@
 import sys
 from os.path import dirname, join
- 
+import os 
 #from PySide.QtCore import QApplication
 from PySide.QtCore import QObject, Slot, Signal
 from PySide.QtGui import QApplication
@@ -44,7 +44,6 @@ class HTMLApplication(object):
  
         #This is basically a browser instance
         self.web = QWebView()
- 
         #Unlikely to matter but prefer to be waiting for callback then try to catch
         # it in time.
         self.web.loadFinished.connect(self.onLoad)
@@ -67,12 +66,15 @@ class HTMLApplication(object):
  
         #Tell the HTML side, we are open for business
         self.myFrame.evaluateJavaScript("ApplicationIsReady()")
+        with open('style.css', 'r', encoding='utf-8') as file:
+            self.style_sheet = file.read()
  
  
 #Kickoff the QT environment
 app = QApplication(sys.argv)
-with open('w3.css', 'r', encoding='utf-8') as file:
-    style_sheet = file.read()
+#sshFile ="w3.css"
+#with open(sshFile,"r") as fh:
+#        app.setStyleSheet(fh.read())
 myWebApp = HTMLApplication()
 myWebApp.show()
  

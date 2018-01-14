@@ -150,9 +150,9 @@ if __name__ == '__main__':
                 s.ser.close()
                 s.ser.open()
                 reading = s.ser.read(6)
-                res = s.check(reading)
-                if(res):
-                    with open('result', 'w') as a:
-                        a.write(str(res) + "//")
+            res = s.check(reading)
+            if(res):
+                with open('result', 'w') as a:
+                    a.write(str(res) + "//")
 
     s.close()

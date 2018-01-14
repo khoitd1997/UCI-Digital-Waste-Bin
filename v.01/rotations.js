@@ -26,9 +26,15 @@ async function runProgram()
 		{
 			console.log("IT is different");
 			result1 = result2;
-			//loading.style.visibility = "visible" ;
-			//await sleep(8000);
-			//loading.style.visibility = "hidden" ;
+			var r1 = document.getElementById("antpopup");
+			var r2 = document.getElementById("SlideShow");
+			r2.style.visibility = "hidden";
+			await sleep (500);
+			r1.style.visibility = "visible" ;
+			document.getElementById("tbox").innerHTML = "The prodcut is this" + 10;
+			await sleep(8000);
+			r1.style.visibility = "hidden" ;
+			r2.style.visibility = "visible";
 			
 		}
 	}

@@ -26,11 +26,9 @@ IMPORTANT: Assumptions made on the hardware
 Assuming that the scale runs in STB mode(send when stable)
 Assuming that the units are in lbs
 """
-import threading
 import serial
 # import time
 import collections
-import pygame
 import time
 Reading = collections.namedtuple(
     'Reading', ['mode', 'stable', 'overflow', 'weight', 'units'])

@@ -142,9 +142,7 @@ if __name__ == '__main__':
     s = Scale()
 
     while(True):
-        # 0:unusable, -1:error, others: difference in mass
-        while(True):
-            if s.ser.in_waiting >= 6:
+        if s.ser.in_waiting >= 6:
             reading = s.ser.read(6)
             while((len(reading) != 6 or reading[0] != 0xff)):
                 s.ser.close()

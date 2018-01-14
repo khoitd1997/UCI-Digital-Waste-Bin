@@ -151,6 +151,6 @@ if __name__ == '__main__':
             res = s.check(reading)
             if(res):
                 with open('result.json', 'w') as a:
-                    a.write("<result>" + str(res) + "</result>")
+                    a.write("<result>" + str(round(res, 3)) + "</result>")
 
     s.close()

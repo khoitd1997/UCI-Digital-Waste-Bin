@@ -30,6 +30,7 @@ function readTextFile(file)
 {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
+    var result;
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
@@ -40,7 +41,8 @@ function readTextFile(file)
                 //alert(allText);
                 parser = new DOMParser();
                 xmlDoc = parser.parseFromString(allText,"text/xml");
-                console.log(xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue);
+                result = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;
+                console.log(result*5);
             }
         }
     }

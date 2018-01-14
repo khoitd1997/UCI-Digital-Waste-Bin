@@ -30,7 +30,6 @@ import threading
 import serial
 # import time
 import collections
-import sector_draw
 import pygame
 import time
 Reading = collections.namedtuple(

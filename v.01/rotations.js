@@ -7,6 +7,9 @@ function sleep(ms) {
 
 async function runProgram()
 {
+	var readFlag = 0;
+	var result1; //prev value
+	var result2; //new value
 	var objDate = new Date();
 	var sec1 = objDate.getSeconds();
 	var sec2 = sec1;
@@ -16,13 +19,17 @@ async function runProgram()
 		objDate2 = new Date();
 		sec2 = objDate2.getMilliseconds();
 		await sleep(500); //sleep for 100 ms
-		readTextFile("file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/result.json")
-		//console.log("asfeaesfa");
-		//console.log(sec2-sec1);
-		//if(sec2 - sec1 >= 400)
-		//	{
-		//	carousel(); 
-		//	}
+		readTextFile("file:///C:/Users/Abel/Desktop/UCI-Digital-Waste-Bin-master%20(3)/UCI-Digital-Waste-Bin-master/v.01/results.json")
+		console.log(result2);
+		if(result2 != result1)
+		{
+			console.log("IT is different");
+			result1 = result2;
+			loading.style.visibility = "visible" ;
+			await sleep(8000);
+			loading.style.visibility = "hidden" ;
+			
+		}
 	}
 }
 
@@ -30,7 +37,6 @@ function readTextFile(file)
 {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
-    var result;
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
@@ -41,8 +47,14 @@ function readTextFile(file)
                 //alert(allText);
                 parser = new DOMParser();
                 xmlDoc = parser.parseFromString(allText,"text/xml");
-                result = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;
-                console.log(result*5);
+				if(readFlag == 0)
+				{
+					result1 = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;
+					readFlag = 1;
+				}
+				else {result2 = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;}
+				
+                console.log(result2*5);
             }
         }
     }

@@ -3,9 +3,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<head>
 
-	 <link rel="stylesheet" href="{{ url_for('static', filename='w3.css') }}">
+	 <link rel="stylesheet" href="w3.css">
 	 <link rel="stylesheet" href="style.css">
-<!---<style>
+<style>
 body 
 {
 	background-color: #ffffff;
@@ -122,12 +122,14 @@ p
 
 }
 
-#content #antpopup {
+.antpopup {
     visibility:hidden;
-	
+	position: absolute;
+	top: 500px;
+    left: 300px;
 	}
 
-</style> --->
+</style>
 </head>
 <body>
 <h1>
@@ -138,9 +140,9 @@ p
 			<img class="mySlides w3-animate-left" src="images/compost/c1.png" style="width:50%">
 			<img class="mySlides w3-animate-left" src= "images/compost/c2.png" style="width:50%">
 			<img class="mySlides w3-animate-left" src="images/compost/c3.png"  style="width:50%">
-			<div id="antpopup"><img src="images/antcomp" width=100% height=auto; /></div>
+			<img class="antpopup" src="images/antcomp.png" width= 50% height=auto; /></div>
 		
-<!---<script>
+<script>
 		var myIndex = 0;
 		carousel();
 
@@ -156,7 +158,7 @@ function carousel() {
 	setTimeout(carousel, 8000); // Change image every 2 seconds
 }
 	</script> 
-	--->
+	
 <script src="rotations.js"></script>
 </p>
 

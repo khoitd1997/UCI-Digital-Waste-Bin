@@ -122,13 +122,19 @@ p
 
 }
 
-.antpopup {
-    visibility:hidden;
+#antpopup {
+  visibility:hidden;
 	position: absolute;
 	top: 500px;
-    left: 300px;
+  left: 100px;
 	}
-
+.centered {
+    color:black;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 </style>
 </head>
 <body>
@@ -136,11 +142,15 @@ p
 	<img class="circular--landscape" src="images/anteater.png" />    UCI Waste Bin
 </h1>
 <p>
-		
+		<p1 id = "SlideShow">
 			<img class="mySlides w3-animate-left" src="images/compost/c1.png" style="width:50%">
 			<img class="mySlides w3-animate-left" src= "images/compost/c2.png" style="width:50%">
 			<img class="mySlides w3-animate-left" src="images/compost/c3.png"  style="width:50%">
-			<img class="antpopup" src="images/antcomp.png" width= 50% height=auto; /></div>
+    </p1>
+			<div id = "antpopup">
+        <img class="antpopup" src="images/antcomp.png" width= 50% height=auto; />
+        <div id = "tbox" class="centered">Centered aaesfasefas efas;jfaskjdfdsafsadlkjfesfaesflkjsafesaefjsaefhasefaeshfajsefjsaefalkjsfekjakjesf</div>
+      </div>
 		
 <script>
 		var myIndex = 0;

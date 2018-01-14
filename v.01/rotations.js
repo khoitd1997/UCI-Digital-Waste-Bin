@@ -1,4 +1,7 @@
 var myIndex = 0;
+	var result1 = 0; //prev value
+	var result2 = 0; //new value
+	var readFlag;
 carousel();
 runProgram();
 function sleep(ms) {
@@ -7,9 +10,7 @@ function sleep(ms) {
 
 async function runProgram()
 {
-	var readFlag = 0;
-	var result1; //prev value
-	var result2; //new value
+
 	var objDate = new Date();
 	var sec1 = objDate.getSeconds();
 	var sec2 = sec1;
@@ -19,22 +20,22 @@ async function runProgram()
 		objDate2 = new Date();
 		sec2 = objDate2.getMilliseconds();
 		await sleep(500); //sleep for 100 ms
-		readTextFile("file:///C:/Users/Abel/Desktop/UCI-Digital-Waste-Bin-master%20(3)/UCI-Digital-Waste-Bin-master/v.01/results.json")
-		console.log(result2);
+		readTextFile("file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/result.json")
+		console.log(result1);
 		if(result2 != result1)
 		{
 			console.log("IT is different");
 			result1 = result2;
-			loading.style.visibility = "visible" ;
-			await sleep(8000);
-			loading.style.visibility = "hidden" ;
+			//loading.style.visibility = "visible" ;
+			//await sleep(8000);
+			//loading.style.visibility = "hidden" ;
 			
 		}
 	}
 }
 
-function readTextFile(file)
-{
+async function readTextFile(file)
+{file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/index.html
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
@@ -49,12 +50,15 @@ function readTextFile(file)
                 xmlDoc = parser.parseFromString(allText,"text/xml");
 				if(readFlag == 0)
 				{
+					console.log("Sets up result1")
 					result1 = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;
+					console.log(result1)
 					readFlag = 1;
+					result2 = result1;
 				}
 				else {result2 = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;}
 				
-                console.log(result2*5);
+                //console.log(result2*5);
             }
         }
     }

@@ -153,5 +153,5 @@ if __name__ == '__main__':
                 with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
-        time.sleep(0.5)
+        time.sleep(0.1)
     s.close()

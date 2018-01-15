@@ -137,7 +137,6 @@ class Scale:
 
 
 if __name__ == '__main__':
-    # Test the examples from Khoi's screenshot
 
     s = Scale()
     with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:

@@ -140,7 +140,8 @@ if __name__ == '__main__':
     # Test the examples from Khoi's screenshot
 
     s = Scale()
-
+    with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:
+        a.write("<result>" + "0" + "</result>")
     while(True):
         if s.ser.in_waiting >= 6:
             reading = s.ser.read(6)

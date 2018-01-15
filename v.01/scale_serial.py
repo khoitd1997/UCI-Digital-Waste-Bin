@@ -152,5 +152,6 @@ if __name__ == '__main__':
             if(res):
                 with open('result.json', 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
+                print(res)
 
     s.close()

@@ -15,7 +15,7 @@
 #@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences
 
 #this start website
-#@chromium --noerrdialogs --kiosk websitegoeshere 
+#@chromium --noerrdialogs --kiosk --incognito --allow-file-access-from-files websitegoeshere 
 
 #this will start the program
 #@sudo /usr/bin/python /home/pi/filename.py

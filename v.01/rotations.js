@@ -20,7 +20,7 @@ async function runProgram()
 		objDate2 = new Date();
 		sec2 = objDate2.getMilliseconds();
 		await sleep(500); //sleep for 100 ms
-		readTextFile("file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/result.json")
+		readTextFile("file:///home/pi/UCI-Digital-Waste-Bin/v.01/result.json");
 		console.log(result1);
 		if(result2 != result1)
 		{
@@ -41,7 +41,7 @@ async function runProgram()
 }
 
 async function readTextFile(file)
-{file:///home/masa/gitProjects/UCI-Digital-Waste-Bin/v.01/index.html
+{
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()

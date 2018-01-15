@@ -1,8 +1,7 @@
-#!/bin/sh
 
-# On boot these chnages will start the website and run weight program
 
-#step 1
+# On boot these changes will start the website and run weight program
+
 # go to sudo nano ~/.config/lxsession/LXDE-pi/autostart
 #this removes screensaver mode
 #find @xscreensaver -no-splash comment it out
@@ -15,7 +14,9 @@
 #This will fix errors if the trashcan loses power
 #@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences
 
+#this start website
 #@chromium --noerrdialogs --kiosk websitegoeshere 
 
+#this will start the program
+#@sudo /usr/bin/python /home/pi/filename.py
 
-#the python code still need to be run but we have to test that see what we want

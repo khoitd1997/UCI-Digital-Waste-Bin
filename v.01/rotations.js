@@ -1,17 +1,17 @@
 var myIndex = 0;
-	var result1 = 0; //prev value
-	var result2 = 0; //new value
-	var readFlag;
+var result1 = 0; //prev value
+var result2 = 0; //new value
+var readFlag;
 carousel();
 runProgram();
 function sleep(ms) {
-	  return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
 	var self = this;
 	self.version = function () { return '1.9.3'; };
-	
+
 	// default options
 	self.options = {
 		useEasing: true, // toggle easing
@@ -68,7 +68,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
 	function formatNumber(num) {
 		var neg = (num < 0),
-        	x, x1, x2, x3, i, len;
+			x, x1, x2, x3, i, len;
 		num = Math.abs(num).toFixed(self.decimals);
 		num += '';
 		x = num.split('.');
@@ -105,7 +105,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
 	self.initialize = function() { 
 		if (self.initialized) return true;
-		
+
 		self.error = '';
 		self.d = (typeof target === 'string') ? document.getElementById(target) : target;
 		if (!self.d) { 
@@ -273,25 +273,25 @@ async function runProgram()
 			await sleep(8000);
 			r1.style.visibility = "hidden" ;
 			r2.style.visibility = "visible";
-			
+
 		}
 	}
 }
 
 async function readTextFile(file)
 {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                //alert(allText);
-                parser = new DOMParser();
-                xmlDoc = parser.parseFromString(allText,"text/xml");
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", file, false);
+	rawFile.onreadystatechange = function ()
+	{
+		if(rawFile.readyState === 4)
+		{
+			if(rawFile.status === 200 || rawFile.status == 0)
+			{
+				var allText = rawFile.responseText;
+				//alert(allText);
+				parser = new DOMParser();
+				xmlDoc = parser.parseFromString(allText,"text/xml");
 				if(readFlag == 0)
 				{
 					console.log("Sets up result1")
@@ -301,33 +301,33 @@ async function readTextFile(file)
 					result2 = result1;
 				}
 				else {result2 = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;}
-				
-                //console.log(result2*5);
-            }
-        }
-    }
-    rawFile.send(null);
+
+				//console.log(result2*5);
+			}
+		}
+	}
+	rawFile.send(null);
 }
 
 async function carousel() {
-	var i;
-	var x = document.getElementsByClassName("mySlides");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.display = "none";  
+	while(true)
+	{
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";  
+		}
+		myIndex++;
+		if (myIndex > x.length) {myIndex = 1}    
+		x[myIndex-1].style.display = "block";  
+		await sleep(8000); //change image every 8 seconds
 	}
-	myIndex++;
-	if (myIndex > x.length) {myIndex = 1}    
-	x[myIndex-1].style.display = "block";  
-	var d = new Date();
-	var n = d.getSeconds();
-	var n2 = n;
-
-	setTimeout(carousel, 8000); // Change image every 2 seconds
+	//setTimeout(carousel, 8000); // Change image every 2 seconds
 }
 
-    //var reader; //GLOBAL File Reader object for demo purpose only
+//var readee; //GLOBAL File Reader object for demo purpose only
 
-    /**
-     * Check for the various File API support.
-     */
+/**
+ * Check for the various File API support.
+ */
 

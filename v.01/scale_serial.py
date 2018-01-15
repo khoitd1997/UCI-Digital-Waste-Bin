@@ -150,7 +150,7 @@ if __name__ == '__main__':
                 reading = s.ser.read(6)
             res = s.check(reading)
             if(res):
-                with open('result.json', 'w') as a:
+                with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
 

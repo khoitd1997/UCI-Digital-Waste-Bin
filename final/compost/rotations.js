@@ -296,7 +296,7 @@ async function runProgram()
 			} else {
 				console.error(numAnim2.error);
 			}
-			await sleep(8000);
+			await sleep(5000);
 			pop.classList.add('fadeo');
 			bot3.classList.add('fadeo');
 			await sleep(1000);

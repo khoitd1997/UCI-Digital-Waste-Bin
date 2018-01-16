@@ -67,6 +67,9 @@ echo "@sudo /usr/bin/python3 ~/UCI-Digital-Waste-Bin/v.01/scale_serial.py" | sud
 echo "@point-rpi" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/v.01/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
+#run this script at startup 
+echo "@sudo ./~/UCI-Digital-Waste-Bin/v.01/setup_maintain.sh" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+
 #Create symlink for the scale, the number seems to be same for every scale
 echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6001\", SYMLINK+=\"SCALE\"" >> /etc/udev/rules.d/99-com.rules
 
@@ -74,5 +77,5 @@ echo "Setup done, the system will reboot in 5 seconds"
 sleep 5
 
 #touch ~/dwb_installed
-sudo reboot
+#sudo reboot
 fi

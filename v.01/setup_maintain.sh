@@ -31,8 +31,6 @@ sudo ifconfig wlan0 down
 
 shutdown -r ${REBOOT_TIME}
 
-
-
 #INITIAL SETUP CODE
 else
 #change password from default
@@ -74,7 +72,7 @@ echo "@sed -i 's/\"exited_cleanly\": true/' ~/.config/chromium/Default/Preferenc
 echo "@point-rpi" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
 #run this script at startup 
-echo "@sudo ./~/UCI-Digital-Waste-Bin/v.01/setup_maintain.sh" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "@sudo sh ~/UCI-Digital-Waste-Bin/v.01/setup_maintain.sh" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
 #Create symlink for the scale, the number seems to be same for every scale
 echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6001\", SYMLINK+=\"SCALE\"" | sudo tee --append /etc/udev/rules.d/99-com.rules
@@ -82,6 +80,6 @@ echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idPro
 echo "Setup done, the system will reboot in 5 seconds"
 sleep 5
 
-#touch ~/dwb_installed
-#sudo reboot
+touch ~/dwb_installed
+sudo reboot
 fi

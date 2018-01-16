@@ -27,7 +27,7 @@ body
 	color: rgba(255, 255, 255, 0.65);
 }
 .circular--landscape {
-	background-color: #ffffff;
+  background-color: #ffffff;
   display: inline-block;
   position: relative;
   width: 150px;
@@ -47,22 +47,14 @@ IMG.displayed {
     display: block;
     margin-left: auto;
     margin-right: auto 
-	  overflow: hidden;
 	}
-	
-::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
-}
 	
 img
 {
 
 	display: block;
     margin-left: auto;
-    margin-right: auto
-	overflow: hidden;
-	overflow: -moz-scrollbars-none; 
+    margin-right: auto 
 }
 
 @-webkit-keyframes bounceInDown {
@@ -169,7 +161,6 @@ h1
 	text-align: center;
 	font-size: 100pt;
 	-webkit-animation: bounceInDown 12s infinite;
-	overflow: hidden;
 }
 
 p
@@ -186,16 +177,11 @@ p
 
 	margin-right: 40px;
     margin-left: 40px;
-	overflow: hidden;
 	
-	
-
 }
 
 #antpopup {
-	visibility:hidden;
-    overflow: hidden;
-	overflow: -moz-scrollbars-none; 
+	visibility:hidden; 
 	position: absolute;
 	top: 450px;
 	left: 100px;
@@ -210,8 +196,6 @@ p
 	font-size: 42pt;
     transform: translate(-50%, -50%);
 	transform: rotate(4.8deg);
-	overflow: hidden;
-	overflow: -moz-scrollbars-none; 
 }
 
 .quotebox
@@ -223,25 +207,9 @@ p
 	font-size: 30pt;
     transform: translate(-50%, -50%);
 	transform: rotate(4.8deg);
-	overflow: hidden;
-	overflow: -moz-scrollbars-none; 
 }
 
-.mySlides.fadeleft
-{
-	-webkit-animation: fadeInLeft 1s;
 
-}
-
-.mySlides.fadeo
-{
-	-webkit-animation: fadeOut 1s;
-}
-.popup
-{
-
-
-}
 
 .popup.bounceup
 {
@@ -311,6 +279,7 @@ p2
 <script>
 		var myIndex = 0;
 		carousel();
+</script> 
 <!--
 function carousel() {
 	var i;
@@ -322,8 +291,8 @@ function carousel() {
 	if (myIndex > x.length) {myIndex = 1}    
 	x[myIndex-1].style.display = "block";	
 	setTimeout(carousel, 8000); // Change image every 8 seconds
-}-->
-	</script> 
+}//-->
+
 	
 
 <script src="rotations.js"></script>

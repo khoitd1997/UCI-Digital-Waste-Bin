@@ -136,7 +136,7 @@ class Scale:
         self.ser.close()
 
 
-mode = 'c'  # possible value is c, r, l
+mode = 'l'  # possible value is c, r, l
 if(mode == 'c'):
     DIR = '/home/pi/UCI-Digital-Waste-Bin/final/compost/result.json'
 if(mode == 'r'):

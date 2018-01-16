@@ -8,7 +8,9 @@
 #list of necessary software
 SOFTWARE=" python3 python-serial ufw ntp python3-pip chromium-browser "
 VERSION="final"
-MODE="compost" 
+#MODE="compost" 
+MODE="recycle"
+# MODE="landfill"
 #time for the computer to sleep
 REBOOT_TIME="24:00" 
 
@@ -66,18 +68,18 @@ sudo sed -i -e '/@xscreensaver/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset s off" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset -dpms" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset s noblank" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
-echo "@sed -i 's/\"exited_cleanly\": true/' ~/.config/chromium/Default/Preferences " | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "@sed -i 's/\"exited_cleanly\": true/' /home/pi/.config/chromium/Default/Preferences " | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@point-rpi" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
 #run this script at startup 
-echo "@./home/pi/UCI-Digital-Waste-Bin/${VERSION}/setup_maintain.sh &" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "@./home/pi/UCI-Digital-Waste-Bin/${VERSION}/setup_maintain.sh &" | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 
 #Create symlink for the scale, the number seems to be same for every scale
 echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6001\", SYMLINK+=\"SCALE\"" | sudo tee --append /etc/udev/rules.d/99-com.rules
 
 #Add to startup file to run python script and the html code at boot
-echo "python3 ~/UCI-Digital-Waste-Bin/${VERSION}/scale_serial.py &" | sudo tee --append /etc/rc.local
-echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/${VERSION}/${MODE}/index.html &" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "python3 /home/pi/UCI-Digital-Waste-Bin/${VERSION}/scale_serial.py &" | sudo tee --append /etc/rc.local
+echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files /home/pi/UCI-Digital-Waste-Bin/${VERSION}/${MODE}/index.html &" | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 
 echo "Setup done, the system will reboot in 5 seconds"
 sleep 5

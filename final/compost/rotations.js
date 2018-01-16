@@ -289,7 +289,6 @@ async function runProgram()
 				useGrouping: true, 
 				separator: '', 
 				decimal: '.',
-				prefix: 'You just helped avoid ',
 				suffix: ' ounces'
 			};
 			var numAnim = new CountUp("tbox", 0.0, result1, 3, 3, options);

@@ -139,7 +139,7 @@ class Scale:
 if __name__ == '__main__':
 
     s = Scale()
-    with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:
+    with open('/home/pi/UCI-Digital-Waste-Bin/final/result.json', 'w') as a:
         a.write("<result>" + "0" + "</result>")
     while(True):
         if s.ser.in_waiting >= 6:
@@ -150,7 +150,7 @@ if __name__ == '__main__':
                 reading = s.ser.read(6)
             res = s.check(reading)
             if(res):
-                with open('/home/pi/UCI-Digital-Waste-Bin/v.01/result.json', 'w') as a:
+                with open('/home/pi/UCI-Digital-Waste-Bin/final/result.json', 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
         time.sleep(0.1)

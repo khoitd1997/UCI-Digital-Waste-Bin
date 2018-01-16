@@ -161,5 +161,5 @@ if __name__ == '__main__':
                 with open(COMPOST_DIR, 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
-        time.sleep(0.8)
+        time.sleep(0.1)
     s.close()

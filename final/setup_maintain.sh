@@ -34,6 +34,7 @@ shutdown -r ${REBOOT_TIME}
 #INITIAL SETUP CODE
 else
 #change password from default
+
 echo "Please enter password"
 passwd
 sudo passwd -l root 

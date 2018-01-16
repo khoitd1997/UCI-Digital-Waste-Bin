@@ -56,19 +56,28 @@ img
     margin-right: auto 
 }
 @-webkit-keyframes bounceInDown {
-  from  {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
     opacity: 0;
-    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+
+  6.66% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
   }
 
   10% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1;
-    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
   }
-  16.7%{
-    transform: none;
+
+  13.3% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to 16.7% {
+    transform: perspective(400px);
   }
   from, 85%{
     opacity: 1;

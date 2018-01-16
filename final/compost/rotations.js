@@ -258,6 +258,7 @@ async function runProgram()
 		{
 			console.log("IT is different");
 			result1 = result2;
+			var result3 = 0.3968316 * result1;
 			var r1 = document.getElementById("antpopup");
 			var r2 = document.getElementById("SlideShow");
 			//var s1 = document.getElementsByClassName('mySlides')[0];
@@ -289,7 +290,7 @@ async function runProgram()
 			} else {
 				console.error(numAnim.error);
 			}
-			var numAnim2 = new CountUp("2box", 0.0, result1, 3, 3, options);
+			var numAnim2 = new CountUp("2box", 0.0, result3, 3, 3, options);
 			if (!numAnim2.error) {
 				numAnim2.start();
 			} else {

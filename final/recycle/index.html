@@ -56,22 +56,12 @@ img
     margin-right: auto 
 }
 @-webkit-keyframes bounceInDown {
-  from, 10%, 12.5%, 15%, to {
-   -webkit- animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
   }
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -3000px, 0);
-  }
-  10% {
-    opacity: 1;
-    transform: translate3d(0, 25px, 0);
-  }
-  12.5% {
-    transform: translate3d(0, -10px, 0);
-  }
-  15% {
-    transform: translate3d(0, 5px, 0);
+  to 16.7%{
+    transform: translate3d(0, 0, 0);
   }
   16.7%{
     transform: none;

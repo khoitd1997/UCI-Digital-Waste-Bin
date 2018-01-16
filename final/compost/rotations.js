@@ -284,13 +284,21 @@ async function runProgram()
 				decimal: '.',
 				suffix: ' ounces'
 			};
+				var options2 = {
+				useEasing: true, 
+				useGrouping: true, 
+				separator: '', 
+				decimal: '.',
+				prefix: 'You just helped avoid ',
+				suffix: ' ounces'
+			};
 			var numAnim = new CountUp("tbox", 0.0, result1, 3, 3, options);
 			if (!numAnim.error) {
 				numAnim.start();
 			} else {
 				console.error(numAnim.error);
 			}
-			var numAnim2 = new CountUp("2box", 0.0, result3, 3, 3, options);
+			var numAnim2 = new CountUp("2box", 0.0, result3, 3, 3, options2);
 			if (!numAnim2.error) {
 				numAnim2.start();
 			} else {

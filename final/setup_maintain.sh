@@ -8,6 +8,7 @@
 #list of necessary software
 SOFTWARE=" python3 python-serial ufw ntp python3-pip chromium-browser "
 VERSION="final"
+MODE="compost" 
 #time for the computer to sleep
 REBOOT_TIME="24:00" 
 
@@ -62,7 +63,7 @@ echo "display_rotate=3" | sudo tee --append /boot/config.txt
 
 
 #Add to startup file to run python script and the html code at boot
-echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/${VERSION}/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/${VERSION}/${MODE}/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@sudo /usr/bin/python3 ~/UCI-Digital-Waste-Bin/${VERSION}/scale_serial.py" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
 #as disable sleep mode and screensaver for rpi

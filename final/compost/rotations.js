@@ -260,14 +260,14 @@ async function runProgram()
 			result1 = result2;
 			var r1 = document.getElementById("antpopup");
 			var r2 = document.getElementById("SlideShow");
-			var s1 = document.getElementsByClassName('mySlides')[0];
+			//var s1 = document.getElementsByClassName('mySlides')[0];
 			var pop = document.getElementsByClassName('popup')[0];
 			var bot1 = document.getElementById("bot"); 
 			var bot3 = document.getElementsByClassName('bot2')[0];
-			s1.classList.add('fadeo');
+			//s1.classList.add('fadeo');
 			await sleep(1000);
 			r2.style.visibility = "hidden";
-			s1.classList.remove('fadeo');
+			//s1.classList.remove('fadeo');
 			bot1.style.visibility = "visible";			
 			r1.style.visibility = "visible";
 			pop.classList.add('bounceup');
@@ -295,7 +295,7 @@ async function runProgram()
 			await sleep(1000);
 			pop.classList.remove('fadeo');
 			bot3.classList.remove('fadeo');
-			s1.classList.add('fadeleft');
+			//s1.classList.add('fadeleft');
 			bot1.style.visibility = "hidden";
 			r1.style.visibility = "hidden" ;
 			r2.style.visibility = "visible";

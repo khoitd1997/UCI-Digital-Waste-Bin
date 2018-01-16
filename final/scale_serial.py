@@ -136,10 +136,18 @@ class Scale:
         self.ser.close()
 
 
+mode = 'c'  # possible value is c, r, l
+if(mode == 'c'):
+    COMPOST_DIR = '/home/pi/UCI-Digital-Waste-Bin/final/compost/result.json'
+if(mode == 'r'):
+    RECYCLE_DIR = '/home/pi/UCI-Digital-Waste-Bin/final/recycle/result.json'
+if(mode == 'l'):
+    LANDFILL_DIR = '/home/pi/UCI-Digital-Waste-Bin/final/landfill/result.json'
+
 if __name__ == '__main__':
 
     s = Scale()
-    with open('/home/pi/UCI-Digital-Waste-Bin/final/result.json', 'w') as a:
+    with open(COMPOST_DIR, 'w') as a:
         a.write("<result>" + "0" + "</result>")
     while(True):
         if s.ser.in_waiting >= 6:
@@ -150,7 +158,7 @@ if __name__ == '__main__':
                 reading = s.ser.read(6)
             res = s.check(reading)
             if(res):
-                with open('/home/pi/UCI-Digital-Waste-Bin/final/result.json', 'w') as a:
+                with open(COMPOST_DIR, 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
         time.sleep(0.1)

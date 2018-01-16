@@ -34,7 +34,6 @@ shutdown -r ${REBOOT_TIME}
 #INITIAL SETUP CODE
 else
 #change password from default
-
 echo "Please enter password"
 passwd
 sudo passwd -l root 
@@ -61,9 +60,6 @@ sudo timedatectl set-timezone US/Pacific
 echo "dtoverlay=pi3-disable-bt" | sudo tee --append /boot/config.txt
 echo "display_rotate=3" | sudo tee --append /boot/config.txt
 
-
-#enable auto-login
-# sudo sed -i -e '/autologin-user/s/#//' -e '/autologin-user/s/$/pi/' /etc/lightdm/lightdm.conf
 
 #Add to startup file to run python script and the html code at boot
 echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/${VERSION}/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart

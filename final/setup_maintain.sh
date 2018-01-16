@@ -8,9 +8,7 @@
 #list of necessary software
 SOFTWARE=" python3 python-serial ufw ntp python3-pip chromium-browser "
 VERSION="final"
-#MODE="compost" 
-MODE="recycle"
-# MODE="landfill"
+
 #time for the computer to sleep
 REBOOT_TIME="24:00" 
 
@@ -44,8 +42,16 @@ sudo passwd -l root
 #choose mode
 # echo "Please select compost, recycle, or landfill"
 # read option
-
-
+# case "${option}" in
+#     c) MODE="compost"
+#     ;;
+#     r) MODE="recycle"
+#     ;;
+#     l) MODE="landfill"
+#     ;;
+#     *)
+#     ;;
+# esac
 #update and install the necessary software
 sudo apt-get update
 sudo apt-get dist-upgrade -y 

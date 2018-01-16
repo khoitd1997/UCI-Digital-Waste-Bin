@@ -38,6 +38,11 @@ echo "Please enter password"
 passwd
 sudo passwd -l root 
 
+#choose mode
+echo "Please select compost, recycle, or landfill"
+read option
+
+
 #update and install the necessary software
 sudo apt-get update
 sudo apt-get dist-upgrade -y 

@@ -289,6 +289,12 @@ async function runProgram()
 			} else {
 				console.error(numAnim.error);
 			}
+			var numAnim2 = new CountUp("2box", 0.0, result1, 3, 3, options);
+			if (!numAnim2.error) {
+				numAnim2.start();
+			} else {
+				console.error(numAnim2.error);
+			}
 			await sleep(8000);
 			pop.classList.add('fadeo');
 			bot3.classList.add('fadeo');

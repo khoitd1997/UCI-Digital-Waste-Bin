@@ -20,12 +20,15 @@ then
 sudo ufw enable
 sudo ifconfig wlan0 up
 sudo service ntp restart
-cd ~/UCI-Digital-Waste-Bin/
-git pull
 sudo apt-get update
 sudo apt-get dist-upgrade -y 
 sudo timedatectl set-timezone US/Pacific
 sudo ifconfig wlan0 down
+
+#for future maintainance stuffs
+# cd ~/UCI-Digital-Waste-Bin/
+# git pull
+
 shutdown -r ${REBOOT_TIME}
 
 #INITIAL SETUP CODE
@@ -38,7 +41,7 @@ sudo passwd -l root
 #update and install the necessary software
 sudo apt-get update
 sudo apt-get dist-upgrade -y 
-sudo apt-get install ${SOFTWARE}
+sudo apt-get install ${SOFTWARE} -y
 python3 -m pip install pyserial
 
 #enable firewall
@@ -54,25 +57,29 @@ echo "display_rotate=3" | sudo tee --append /boot/config.txt
 
 
 #enable auto-login
-sed -i -e '/autologin-user/s/#//' -e '/autologin-user/s/$/pi' /etc/lightdm/lightdm.conf
+# sudo sed -i -e '/autologin-user/s/#//' -e '/autologin-user/s/$/pi/' /etc/lightdm/lightdm.conf
 
-#Add to startup file to run python script and the html code at boot as well 
+#Add to startup file to run python script and the html code at boot
+echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/v.01/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+echo "@sudo /usr/bin/python3 ~/UCI-Digital-Waste-Bin/v.01/scale_serial.py" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+
 #as disable sleep mode and screensaver for rpi
 sudo sed -i -e '/@xscreensaver/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset s off" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset -dpms" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset s noblank" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@sed -i 's/\"exited_cleanly\": true/' ~/.config/chromium/Default/Preferences " | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
-echo "@sudo /usr/bin/python3 ~/UCI-Digital-Waste-Bin/v.01/scale_serial.py" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@point-rpi" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
-echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files ~/UCI-Digital-Waste-Bin/v.01/index.html" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
+
+#run this script at startup 
+echo "@sudo sh ~/UCI-Digital-Waste-Bin/v.01/setup_maintain.sh" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 
 #Create symlink for the scale, the number seems to be same for every scale
-echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6001\", SYMLINK+=\"SCALE\"" >> /etc/udev/rules.d/99-com.rules
+echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6001\", SYMLINK+=\"SCALE\"" | sudo tee --append /etc/udev/rules.d/99-com.rules
 
 echo "Setup done, the system will reboot in 5 seconds"
 sleep 5
 
-#touch ~/dwb_installed
+touch ~/dwb_installed
 sudo reboot
 fi

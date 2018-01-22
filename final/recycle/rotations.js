@@ -282,7 +282,7 @@ async function runProgram()
 				useGrouping: true, 
 				separator: '', 
 				decimal: '.',
-				suffix: ' ounces'
+				suffix: ' ounces!'
 			};
 				var options2 = {
 				useEasing: true, 

@@ -284,7 +284,7 @@ async function runProgram()
 				decimal: '.',
 				suffix: ' ounces'
 			};
-			var numAnim = new CountUp("tbox", 0.0, result1, 3, 3, options);
+			var numAnim = new CountUp("tbox", 0.0, result1, 3, 2, options);
 			if (!numAnim.error) {
 				numAnim.start();
 			} else {

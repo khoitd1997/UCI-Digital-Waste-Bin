@@ -6,7 +6,7 @@
 # MAIN_PY_FILE="pygame_test.py"
 
 #list of necessary software
-SOFTWARE=" python3 python-serial ufw ntp python3-pip chromium-browser "
+SOFTWARE=" python3 python-serial ufw ntp python3-pip chromium-browser unclutter "
 VERSION="final"
 
 #time for the computer to sleep
@@ -76,7 +76,7 @@ echo "@xset -dpms" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@xset s noblank" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 echo "@sed -i 's/\"exited_cleanly\": true/' /home/pi/.config/chromium/Default/Preferences " | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 echo "@point-rpi" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
-
+echo "@unclutter -idle 0.001 -root" | sudo tee --append ~/.config/lxsession/LXDE-pi/autostart
 #run this script at startup 
 echo "@./home/pi/UCI-Digital-Waste-Bin/${VERSION}/setup_maintain.sh &" | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 

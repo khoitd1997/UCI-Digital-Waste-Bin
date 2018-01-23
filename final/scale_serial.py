@@ -112,11 +112,11 @@ class Scale:
         # trashbag has been replaced, if replaced
         # then reset the max value to zero
         if(result<=self.last_value -0.5*self.last_value):
-            self.last_value = 0
-
+            self.last_value = result
+            return 0
         # if the current reading is bigger than last reading by a value
         # then output the difference
-        if (self.last_value + self.weight_threshold) < result:
+        else if (self.last_value + self.weight_threshold) < result:
 
             difference = float(result) - float(self.last_value)
             self.last_value = result

@@ -57,7 +57,7 @@ class Scale:
         #self.raw = [0, 0, 0, 0, 0, 0]
 
         # minimum increase in weight to be counted as increased
-        self.weight_threshold = 0.006
+        self.weight_threshold = 0.1
 
         self.trashbag_replaced_counter = 0
     # function to process data, input is 6 bytes read from serial port

@@ -111,7 +111,7 @@ class Scale:
         # this is a check implemented to detect if the
         # trashbag has been replaced, if replaced
         # then reset the max value to zero
-        if((result<=self.last_value -0.5*self.last_value) and (result>5)):
+        if((result<=((self.last_value -0.5*self.last_value) and (result>5*16))):
             self.last_value = result
             return 0
         # if the current reading is bigger than last reading by a value

@@ -116,7 +116,7 @@ class Scale:
             return 1
         # if the current reading is bigger than last reading by a value
         # then output the difference
-        else if (self.last_value + self.weight_threshold) < result:
+        elif (self.last_value + self.weight_threshold) < result:
 
             difference = float(result) - float(self.last_value)
             self.last_value = result

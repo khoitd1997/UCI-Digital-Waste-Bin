@@ -113,7 +113,7 @@ class Scale:
         # then reset the max value to zero
         if (self.last_value-result)>5*16:
             self.last_value = result
-            return 0
+            return 1
         # if the current reading is bigger than last reading by a value
         # then output the difference
         else if (self.last_value + self.weight_threshold) < result:

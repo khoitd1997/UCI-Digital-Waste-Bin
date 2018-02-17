@@ -158,5 +158,5 @@ if __name__ == '__main__':
                 with open(DIR, 'w') as a:
                     a.write("<result>" + str(res) + "</result>")
                 print(res)
-        time.sleep(0.1)
+        time.sleep(0.01)
     s.close()

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.cu": "c",
+        "scale_optimized.h": "c"
+    }
+}

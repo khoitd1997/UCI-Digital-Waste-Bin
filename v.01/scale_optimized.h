@@ -3,11 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int openScale(void);
+#define ERROR_NOT_ENOUGH_READ_BYTES -1
+#define ERROR_SCALE_READ_FAILED -2
+#define ERROR_INVALID_SCALE_READING -3
 
-void printAttr(int scale, FILE *log);
+#define SCALE_WEIGHT_SAME 0
 
-float readScale(int scale, fd_set *inputSet, struct timeval *timeOut);
+int openScale(FILE *log);
 
-int closeScale(int scale);
+void errorLogging(char *message, FILE *log);
+
+float readScale(int scale, fd_set *inputSet, struct timeval *timeOut, FILE *log);
+
+int closeScale(int scale, FILE *log);
 #endif

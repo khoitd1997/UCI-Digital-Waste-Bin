@@ -35,38 +35,35 @@ int openScale(FILE *log)
     assert(log);
     while ((scale = open(SCALE_DEV_FILE, O_RDONLY)) < 0)
     {
+        if (count == OPEN_SCALE_TRIAL)
+        {
+            errorLogging("can't open scale\n", log);
+            exit(-1);
+        }
         ++count;
         sleep(1);
     }
 
-    if (count == OPEN_SCALE_TRIAL)
+    struct termios scale_settings;
+
+    // this is the default settings for the serial port
+    // (port=None, baudrate=9600, bytesize=EIGHTBITS, parity=PARITY_NONE, stopbits=STOPBITS_ONE,
+    // timeout=None, xonxoff=False, rtscts=False, write_timeout=None, dsrdtr=False, inter_byte_timeout=None)¶
+    scale_settings.c_iflag &= ~(IGNBRK | BRKINT | ICRNL | INLCR | PARMRK | INPCK | ISTRIP | IXON);
+    scale_settings.c_oflag = 0;
+
+    scale_settings.c_cflag &= ~(CSIZE | PARENB);
+    scale_settings.c_cflag |= CS8;
+    scale_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | IEXTEN | ISIG);
+
+    if (!cfsetospeed(&scale_settings, B9600) && !tcsetattr(scale, TCSANOW, &scale_settings))
     {
-        errorLogging("can't open scale\n", log);
-        exit(-1);
+        // setup successful
     }
     else
     {
-        struct termios scale_settings;
-
-        // this is the default settings for the serial port
-        // (port=None, baudrate=9600, bytesize=EIGHTBITS, parity=PARITY_NONE, stopbits=STOPBITS_ONE,
-        // timeout=None, xonxoff=False, rtscts=False, write_timeout=None, dsrdtr=False, inter_byte_timeout=None)¶
-        scale_settings.c_iflag &= ~(IGNBRK | BRKINT | ICRNL | INLCR | PARMRK | INPCK | ISTRIP | IXON);
-        scale_settings.c_oflag = 0;
-
-        scale_settings.c_cflag &= ~(CSIZE | PARENB);
-        scale_settings.c_cflag |= CS8;
-        scale_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | IEXTEN | ISIG);
-
-        if (!cfsetospeed(&scale_settings, B9600) && !tcsetattr(scale, TCSANOW, &scale_settings))
-        {
-            // setup successful
-        }
-        else
-        {
-            errorLogging("error while setting scale with error code \n", log);
-            errorLogging(strerror(errno), log);
-        }
+        errorLogging("error while setting scale with error code \n", log);
+        errorLogging(strerror(errno), log);
     }
 }
 
@@ -153,6 +150,7 @@ float readScale(int scale, fd_set *inputSet, struct timeval *timeOut, FILE *log)
                     result = (result / (pow(10, decimal_point - 1))) * UNIT_CONVERSION;
                     result = isNegative ? -result : result;
 
+                    // flush redundant data after every read
                     if (!tcflush(scale, TCIFLUSH))
                     {
 
@@ -186,14 +184,15 @@ int closeScale(int scale, FILE *log)
     int count = 0;
     while (close(scale) < 0)
     {
+        if (count == CLOST_SCALE_TRIAL)
+        {
+            errorLogging("failed to load scale\n", log);
+            exit(-1);
+        }
         ++count;
     }
 
-    if (count == CLOST_SCALE_TRIAL)
-    {
-        errorLogging("failed to load scale\n", log);
-        exit(-1);
-    }
+    return 0;
 }
 
 #ifdef DEBUG

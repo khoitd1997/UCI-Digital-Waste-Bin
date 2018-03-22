@@ -14,10 +14,12 @@
 #define MODE "compost"
 
 #define SCALE_DEV_FILE "/dev/SCALE"
+#define SAVE_DIR "/home/pi/UCI-Digital-Waste-Bin/final/";
 #define SCALE_MESSAGE_SIZE 6
 #define RECONNECT_ATTEMPTS 5
 #define UNIT_CONVERSION 16.0
 
+// open file descriptor to writing to the scale
 int openScale(void)
 {
     int scale = open(SCALE_DEV_FILE, "r");
@@ -30,12 +32,13 @@ int openScale(void)
     scale_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | IEXTEN | ISIG);
 
     cfsetospeed(&scale_settings, B9600);
-    tcsetattr(scale, , &scale_settings);
+    tcsetattr(scale, TCSANOW, &scale_settings);
     // this is the default settings for the serial port
     // (port=None, baudrate=9600, bytesize=EIGHTBITS, parity=PARITY_NONE, stopbits=STOPBITS_ONE,
     // timeout=None, xonxoff=False, rtscts=False, write_timeout=None, dsrdtr=False, inter_byte_timeout=None)¶
 }
 
+// used for printing log file for error reporting
 void printAttr(int scale, FILE *log)
 {
     struct termios scale_settings;
@@ -53,6 +56,7 @@ void printAttr(int scale, FILE *log)
     printf("The setting is:");
 }
 
+// read the scale from file descriptor, select set and timeout struct
 float readScale(int scale, fd_set *inputSet, struct timeval *timeOut)
 {
     uint8_t buffer[SCALE_MESSAGE_SIZE];
@@ -70,11 +74,11 @@ float readScale(int scale, fd_set *inputSet, struct timeval *timeOut)
     if (select(scale, inputSet, NULL, NULL, timeOut))
     {
         temp = read(scale, buffer, SCALE_MESSAGE_SIZE);
-        if (( temp!= 6 && temp>=0)
+        if (temp != 6 && temp >= 0)
         {
             return -1.0;
         }
-        else if(temp<0)
+        else if (temp < 0)
         {
             return -2.0;
         }
@@ -105,7 +109,7 @@ float readScale(int scale, fd_set *inputSet, struct timeval *timeOut)
                 prevBuffer[1] = buffer[3];
                 prevBuffer[2] = buffer[4];
 
-                result = digit1 + digit2 * 10 + digit3 * 100 + digit4 * 1000 + digit5 * 10000 = +digit6 * 100000;
+                result = digit1 + digit2 * 10 + digit3 * 100 + digit4 * 1000 + digit5 * 10000 + digit6 * 100000;
                 result = (result / (pow(10, decimal_point - 1))) * UNIT_CONVERSION;
                 result = isNegative ? -result : result;
                 tcflush(scale, TCIFLUSH);
@@ -131,9 +135,11 @@ int closeScale(int scale)
     close(scale);
 }
 
+#ifdef DEBUG
+
 int main(void)
 {
-    char saveDir[100] = "/home/pi/UCI-Digital-Waste-Bin/final/";
+    char saveDir[100] = SAVE_DIR;
     strcat(saveDir, MODE);
     strcat(saveDir, "/result.json");
     FILE *saveFile = fopen(saveDir, "w");
@@ -161,3 +167,4 @@ int main(void)
     }
     return 0;
 }
+#endif

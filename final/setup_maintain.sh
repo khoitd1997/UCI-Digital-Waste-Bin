@@ -87,6 +87,13 @@ echo "ACTION==\"add\",SUBSYSTEM==\"tty\", ATTRS{idVendor}==\"0403\", ATTRS{idPro
 echo "python3 /home/pi/UCI-Digital-Waste-Bin/${VERSION}/scale_serial.py &" | sudo tee --append /etc/rc.local
 echo "@chromium-browser --noerrdialogs --kiosk --incognito --allow-file-access-from-files /home/pi/UCI-Digital-Waste-Bin/${VERSION}/${MODE}/index.html &" | sudo tee --append /home/pi/.config/lxsession/LXDE-pi/autostart
 
+# set 720p to the pi, source for the settings: https://elinux.org/RPiconfig#Video_mode_options 
+sudo sed -i -e '/hdmi_mode/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
+echo "hdmi_mode=4" | sudo tee --append /boot/config.txt
+sudo sed -i -e '/hdmi_group/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
+echo "hdmi_group=1" | sudo tee --append /boot/config.txt
+
+
 echo "Setup done, the system will reboot in 5 seconds"
 sleep 5
 

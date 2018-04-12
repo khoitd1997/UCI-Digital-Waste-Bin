@@ -93,6 +93,10 @@ echo "hdmi_mode=4" | sudo tee --append /boot/config.txt
 sudo sed -i -e '/hdmi_group/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
 echo "hdmi_group=1" | sudo tee --append /boot/config.txt
 
+# enable full screen 
+sudo sed -i -e '/disable_overscan/s/^/#/' ~/.config/lxsession/LXDE-pi/autostart
+echo "disable_overscan=1" | sudo tee --append /boot/config.txt
+
 
 echo "Setup done, the system will reboot in 5 seconds"
 sleep 5

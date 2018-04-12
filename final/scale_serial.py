@@ -111,7 +111,7 @@ class Scale:
         # this is a check implemented to detect if the
         # trashbag has been replaced, if replaced
         # then reset the max value to zero
-        if (self.last_value-result)>5*16:
+        if (self.last_value-result) > 5*16:
             self.last_value = result
             return 1
         # if the current reading is bigger than last reading by a value
@@ -133,7 +133,7 @@ class Scale:
         self.ser.close()
 
 
-mode = 'l'  # possible value is c, r, l
+mode = 'r'  # possible value is c, r, l
 if(mode == 'c'):
     DIR = '/home/pi/UCI-Digital-Waste-Bin/final/compost/result.json'
 if(mode == 'r'):

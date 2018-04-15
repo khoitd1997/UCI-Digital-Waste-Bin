@@ -1,6 +1,6 @@
 # ESW Digital Waste Bins
 
-**ALL DEVELOPMENT HAS MOVED TO: https://github.com/abeljim/UCI-DWB **
+** ALL DEVELOPMENT HAS MOVED TO: https://github.com/abeljim/UCI-DWB **
 
 
 Watch the video that started it all!

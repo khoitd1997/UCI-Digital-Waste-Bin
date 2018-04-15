@@ -1,5 +1,8 @@
 # ESW Digital Waste Bins
 
+**ALL DEVELOPMENT HAS MOVED TO: https://github.com/abeljim/UCI-DWB **
+
+
 Watch the video that started it all!
 
 [![University of Washington: Digital Bins - An Animated Waste Installation](https://img.youtube.com/vi/Ps0bFDG5O0c/0.jpg)](https://www.youtube.com/watch?v=Ps0bFDG5O0c)
